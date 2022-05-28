@@ -1,13 +1,15 @@
 class ApplicationConstants {
-  static const COMPANY_NAME = 'OneSYSTEM';
+  static const companyName = 'OneSYSTEM';
 
   // production'da olmadığımız sürece çalışmasını istemediğimiz fonksiyonlar için kullanacağız
-  static const TEST_MODE = true;
+  static const testMode = true;
 
-  static const LANG_ASSET_PATH = 'assets/lang';
-  static const FONT_FAMILY = 'POPPINS'; //TODO: DÜZENLE
+  static const langAssetPath = 'assets/lang';
+  static const fontFamily = 'POPPINS'; //TODO: DÜZENLE
 
-  static const EMAIL_REGIEX = r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}\$';
+  static const emailERegex = r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}\$';
 
-  static const APP_WEB_SITE = 'https://oguzkaba.github.io';
+  static const appWebSite = 'https://oguzkaba.github.io';
+
+  static const lottieLoadingIcon = "assets/lotties/loading-blocks.json";
 }

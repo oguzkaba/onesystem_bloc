@@ -9,16 +9,16 @@ class AppThemes {
   static final lightTheme = ThemeData.light().copyWith(
       visualDensity: VisualDensity.adaptivePlatformDensity,
       brightness: Brightness.light,
-      scaffoldBackgroundColor: const Color(0xfff1f1f1),
+      scaffoldBackgroundColor: ColorsConstants.myWhite,
       appBarTheme: const AppBarTheme(
-          backgroundColor: ColorsConstants.white,
-          iconTheme: IconThemeData(color: ColorsConstants.dark_default)));
+          backgroundColor: ColorsConstants.myWhite,
+          iconTheme: IconThemeData(color: ColorsConstants.myDark)));
 
   static final darkTheme = ThemeData.dark().copyWith(
       brightness: Brightness.dark,
       visualDensity: VisualDensity.adaptivePlatformDensity,
       appBarTheme: const AppBarTheme(
-          backgroundColor: ColorsConstants.dark_default,
-          foregroundColor: ColorsConstants.white,
-          iconTheme: IconThemeData(color: ColorsConstants.white)));
+          backgroundColor: ColorsConstants.myDark,
+          foregroundColor: ColorsConstants.myWhite,
+          iconTheme: IconThemeData(color: ColorsConstants.myWhite)));
 }

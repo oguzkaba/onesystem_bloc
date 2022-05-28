@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:onesystem_bloc/core/constants/colors/colors_constants.dart';
+import 'package:onesystem_bloc/features/providers/ui_visibility_provider.dart';
+import 'package:provider/provider.dart';
 
 class TextFormFieldWidget extends StatelessWidget {
   final String hintText;
@@ -8,16 +10,19 @@ class TextFormFieldWidget extends StatelessWidget {
   final bool obscureText;
   final TextInputAction action;
   final Function(String)? onChanged;
+  final Function()? onVisible;
   final String? Function(String?)? validator;
-
-  TextFormFieldWidget(
-      {required this.hintText,
+  const TextFormFieldWidget(
+      {Key? key,
+      required this.hintText,
       required this.prefixIconData,
       this.suffixIconData,
       required this.obscureText,
       required this.onChanged,
       required this.action,
-      this.validator});
+      this.validator,
+      this.onVisible})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,44 +32,42 @@ class TextFormFieldWidget extends StatelessWidget {
       validator: validator,
       onChanged: onChanged,
       obscureText: obscureText,
-      cursorColor: ColorsConstants.focusedBlue,
+      cursorColor: ColorsConstants.myBlue,
       style: const TextStyle(
-        color: ColorsConstants.dark_default,
+        color: ColorsConstants.myDark,
         //tc.isSavedDarkMode() ? Global.white : Global.dark_default,
         fontSize: 16.0,
       ),
       decoration: InputDecoration(
         labelStyle: const TextStyle(
-            color: ColorsConstants.dark_default,
+            color: ColorsConstants.myDark,
             //tc.isSavedDarkMode() ? Global.white : Global.dark_default,
             fontSize: 18.0),
-        focusColor: ColorsConstants.focusedBlue,
+        focusColor: ColorsConstants.myBlue,
         filled: true,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(5),
           borderSide:
-              const BorderSide(color: ColorsConstants.extra_light, width: 1.3),
+              const BorderSide(color: ColorsConstants.myLight, width: 1.3),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
           borderSide:
-              const BorderSide(color: ColorsConstants.focusedBlue, width: 1.3),
+              const BorderSide(color: ColorsConstants.myBlue, width: 1.3),
         ),
         labelText: hintText,
         prefixIcon: Icon(
           prefixIconData,
-          size: 25,
-          color: ColorsConstants.dark_default,
+          size: 20,
+          color: ColorsConstants.myDark,
           //tc.isSavedDarkMode() ? Global.white : Global.dark_default,
         ),
         suffixIcon: GestureDetector(
-          onTap: () {
-            //lc.isVisible = !lc.isVisible;
-          },
+          onTap: () => onVisible,
           child: Icon(
             suffixIconData,
             size: 20,
-            color: ColorsConstants.dark_default,
+            color: ColorsConstants.myDark,
             //lc.isVisible ? Global.dark_default : Global.light,
           ),
         ),

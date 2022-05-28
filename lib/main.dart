@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_const_constructors
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,13 +7,17 @@ import 'package:onesystem_bloc/core/init/lang/language_manager.dart';
 import 'package:onesystem_bloc/core/init/routes/routes.gr.dart';
 import 'package:onesystem_bloc/core/themes/cubit/theme_cubit.dart';
 import 'package:onesystem_bloc/core/themes/themes.dart';
+import 'package:onesystem_bloc/features/providers/ui_visibility_provider.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   await _init();
   runApp(EasyLocalization(
-    child: MyApp(),
+    child: MultiProvider(providers: [
+      ChangeNotifierProvider(create: (_) => UIVisibilityProvider())
+    ], child: MyApp()),
     supportedLocales: LanguageManager.instance.supportedLocales,
-    path: ApplicationConstants.LANG_ASSET_PATH,
+    path: ApplicationConstants.langAssetPath,
     startLocale: LanguageManager.instance.trLocale,
   ));
 }

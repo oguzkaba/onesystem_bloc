@@ -21,7 +21,7 @@ class LoginButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: height ?? context.height * .06,
       width: width ?? context.width * .3,
       child: ElevatedButton(

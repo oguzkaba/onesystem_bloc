@@ -11,7 +11,7 @@ class AnalytcisManager {
 
   static final _analytics = FirebaseAnalytics.instance;
 
-  final List<NavigatorObserver> observer = ApplicationConstants.TEST_MODE
+  final List<NavigatorObserver> observer = ApplicationConstants.testMode
       ? []
       : [FirebaseAnalyticsObserver(analytics: _analytics)];
 
@@ -21,7 +21,7 @@ class AnalytcisManager {
   // Bu istenmeyen bir durumdur, gerçek verileri manipüle eder..
   Future<void> init() async {
     await _analytics.setAnalyticsCollectionEnabled(
-        ApplicationConstants.TEST_MODE ? false : true);
+        ApplicationConstants.testMode ? false : true);
   }
 
   Future<void> customEvent(String name) async {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onesystem_bloc/core/constants/colors/colors_constants.dart';
 import 'package:onesystem_bloc/core/constants/images/image_constants.dart';
 import 'package:onesystem_bloc/core/extansions/context_extension.dart';
@@ -29,10 +30,11 @@ class LoginView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Center(
-                      child: Image.asset(ImageConstants.instance.darkLogo,
+                      child: SvgPicture.asset(
+                          ImageConstants.instance.toLightSvg("light_full"),
                           height: keyboardOpen ? 0 : 60),
                     ),
-                    SizedBox(height: keyboardOpen ? 0 : context.height * .03),
+                    SizedBox(height: keyboardOpen ? 0 : context.height * .08),
                     const ChangeProjectAndLangWidget(),
                     const FormWidget(),
                     Padding(
@@ -43,12 +45,12 @@ class LoginView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const [
                             Icon(Icons.admin_panel_settings,
-                                color: ColorsConstants.pink, size: 30),
+                                color: ColorsConstants.myMedium, size: 30),
                             Text('Login to ADMIN',
                                 style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
-                                    color: ColorsConstants.pink))
+                                    color: ColorsConstants.myLight))
                           ],
                         ),
                       ),
@@ -61,8 +63,7 @@ class LoginView extends StatelessWidget {
           !Responsive.isMobile(context)
               ? Expanded(
                   flex: Responsive.isTablet(context) ? 4 : 6,
-                  child: const SwipeWidget(),
-                )
+                  child: const SwipeWidget())
               : Container()
         ],
       )),

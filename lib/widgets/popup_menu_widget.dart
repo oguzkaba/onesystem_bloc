@@ -1,9 +1,13 @@
+// ignore_for_file: avoid_renaming_method_parameters
+
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class ContextMenuAction extends PopupMenuEntry<int> {
   @override
   double height = 100;
+
+  ContextMenuAction({Key? key}) : super(key: key);
 
   @override
   bool represents(int? n) => n == 1 || n == -1;
@@ -26,15 +30,15 @@ class ContextMenuActionState extends State<ContextMenuAction> {
     return Column(
       children: <Widget>[
         ListTile(
-            leading: Icon(Icons.visibility),
-            title: Text('View'),
+            leading: const Icon(Icons.visibility),
+            title: const Text('View'),
             onTap: _view,
-            trailing: Icon(Icons.chevron_right)),
+            trailing: const Icon(Icons.chevron_right)),
         ListTile(
-            leading: Icon(Icons.download),
-            title: Text('Download'),
+            leading: const Icon(Icons.download),
+            title: const Text('Download'),
             onTap: _download,
-            trailing: Icon(Icons.chevron_right))
+            trailing: const Icon(Icons.chevron_right))
       ],
     );
   }
@@ -44,6 +48,8 @@ class ContextMenuActionState extends State<ContextMenuAction> {
 class ContextSubMenuAction extends PopupMenuEntry<int> {
   @override
   double height = 100;
+
+  ContextSubMenuAction({Key? key}) : super(key: key);
 
   @override
   bool represents(int? n) => n == 1 || n == -1;
@@ -65,11 +71,11 @@ class ContextSubMenuActionState extends State<ContextSubMenuAction> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Text('View'),
-        Divider(),
-        ListTile(title: Text('PR-Paint Report'), onTap: _view),
-        ListTile(title: Text('WL-WeldLog'), onTap: _download),
-        ListTile(title: Text('FR-Final Report'), onTap: _download)
+        const Text('View'),
+        const Divider(),
+        ListTile(title: const Text('PR-Paint Report'), onTap: _view),
+        ListTile(title: const Text('WL-WeldLog'), onTap: _download),
+        ListTile(title: const Text('FR-Final Report'), onTap: _download)
       ],
     );
   }
@@ -79,6 +85,8 @@ class ContextSubMenuActionState extends State<ContextSubMenuAction> {
 class ContextSubMenuAction1 extends PopupMenuEntry<int> {
   @override
   double height = 100;
+
+  ContextSubMenuAction1({Key? key}) : super(key: key);
 
   @override
   bool represents(int? n) => n == 1 || n == -1;
@@ -100,11 +108,11 @@ class ContextSubMenuAction1State extends State<ContextSubMenuAction1> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Text('Download'),
-        Divider(),
-        ListTile(title: Text('PR-Paint Report'), onTap: _view),
-        ListTile(title: Text('WL-WeldLog'), onTap: _download),
-        ListTile(title: Text('FR-Final Report'), onTap: _download)
+        const Text('Download'),
+        const Divider(),
+        ListTile(title: const Text('PR-Paint Report'), onTap: _view),
+        ListTile(title: const Text('WL-WeldLog'), onTap: _download),
+        ListTile(title: const Text('FR-Final Report'), onTap: _download)
       ],
     );
   }

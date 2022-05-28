@@ -3,10 +3,12 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:onesystem_bloc/core/constants/colors/colors_constants.dart';
 import 'package:onesystem_bloc/core/extansions/context_extension.dart';
+import 'package:onesystem_bloc/features/providers/ui_visibility_provider.dart';
 import 'package:onesystem_bloc/widgets/dialog_widget.dart';
 import 'package:onesystem_bloc/widgets/ebutton_widget.dart';
 import 'package:onesystem_bloc/widgets/responsive_widget.dart';
 import 'package:onesystem_bloc/widgets/textformfield_widget.dart';
+import 'package:provider/provider.dart';
 import 'login_button_widget.dart';
 
 class FormWidget extends StatelessWidget {
@@ -14,12 +16,10 @@ class FormWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _isButtonDisabled = false;
     GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
     return Form(
       key: formKey,
-      // ignore: deprecated_member_use
       autovalidateMode: AutovalidateMode.always,
       //lc.autoValidate ? AutovalidateMode.always : AutovalidateMode.disabled,
       child: Padding(
@@ -37,7 +37,7 @@ class FormWidget extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: <Widget>[
-                buildTextFormFieldWidgetPass(),
+                buildTextFormFieldWidgetPass(context),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -45,30 +45,26 @@ class FormWidget extends StatelessWidget {
                       children: [
                         Theme(
                           data: ThemeData(
-                              unselectedWidgetColor:
-                                  ColorsConstants.dark_default
-                              //tc.isColorChangeWD(),
-                              ),
+                              unselectedWidgetColor: ColorsConstants.myDark),
                           child: Checkbox(
-                            activeColor: ColorsConstants.dark_red,
-                            //tc.isColorChangeWD(),
-                            checkColor: ColorsConstants.dark_,
-                            //tc.isColorChangeDW(),
-                            value: true,
-                            //lc.checkVal,
+                            splashRadius: 0,
+                            activeColor: ColorsConstants.myDarkBlue,
+                            checkColor: ColorsConstants.myWhite,
+                            value: context
+                                .watch<UIVisibilityProvider>()
+                                .isCheckRememberWidget,
                             onChanged: (value) {
-                              // lc.checkVal = !lc.checkVal;
-                              // sc.isRemember = lc.checkVal;
-                              // print(
-                              //     'Remember: Login Value: ${sc.isRemember}');
+                              context
+                                  .read<UIVisibilityProvider>()
+                                  .changeCheckRememberWidget();
                             },
                           ),
                         ),
                         InkWell(
                           onTap: () {
-                            // lc.checkVal = !lc.checkVal;
-                            // sc.isRemember = lc.checkVal;
-                            // print('Remember: Login Value: ${sc.isRemember}');
+                            context
+                                .read<UIVisibilityProvider>()
+                                .changeCheckRememberWidget();
                           },
                           child: const Text(
                             'Remember Me?',
@@ -86,7 +82,7 @@ class FormWidget extends StatelessWidget {
                       child: const Text(
                         'Forgot password?',
                         style: TextStyle(
-                            //color: tc.isColorChangeWD(),
+                            color: ColorsConstants.myDarkBlue,
                             fontSize: 12,
                             fontWeight: FontWeight.bold),
                       ),
@@ -98,22 +94,27 @@ class FormWidget extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                kIsWeb ? const SizedBox(height: 30) : const SizedBox(height: 0),
+                kIsWeb
+                    ? SizedBox(height: context.height * .08)
+                    : const SizedBox(height: 0),
                 LoginButtonWidget(
-                  tcolor: ColorsConstants.white,
+                  tcolor: ColorsConstants.myWhite,
                   width: Responsive.isMobile(context)
                       ? context.width * .9
                       : context.width * .3,
-                  height: context.height * .06,
-                  color: ColorsConstants.focusedBlue,
+                  height: Responsive.isMobile(context)
+                      ? context.height * .06
+                      : context.height * .08,
+                  color: ColorsConstants.myDarkBlue,
                   //#region LOGIN CONTROL
-                  onClick: _loginButtonPress(),
+                  onClick: () {},
+                  //_loginButtonPress(),
                   //#endregion
                   // widget: dvc.loginLoading.value
                   // ? LoadingWidget(color: ColorsConstants.white):
                   widget: const Text('Login',
                       style: TextStyle(
-                          color: ColorsConstants.white, fontSize: 18)),
+                          color: ColorsConstants.myWhite, fontSize: 18)),
                 ),
                 const SizedBox(
                   height: 5.0,
@@ -124,7 +125,9 @@ class FormWidget extends StatelessWidget {
                         width: Responsive.isMobile(context)
                             ? context.width * .9
                             : context.width * .3,
-                        height: context.height * .06,
+                        height: Responsive.isMobile(context)
+                            ? context.height * .06
+                            : context.height * .1,
                         //color: tc.isColorChangeWD(),
                         //tcolor: tc.isColorChangeDW(),
                         onClick: () => ShowDialogWidget(
@@ -196,6 +199,7 @@ Function()? _loginButtonPress() {
     //   print('Failed to sign in ${apic.isLogin}');
     // }
   }
+  return null;
 }
 
 TextFormFieldWidget buildTextFormFieldWidgetUsername() {
@@ -210,14 +214,24 @@ TextFormFieldWidget buildTextFormFieldWidgetUsername() {
   );
 }
 
-TextFormFieldWidget buildTextFormFieldWidgetPass() {
-  return TextFormFieldWidget(
-    action: TextInputAction.send,
-    hintText: 'Password',
-    //obscureText: lc.isVisible ? false : true,
-    prefixIconData: Icons.lock,
-    //suffixIconData: lc.isVisible ? Icons.visibility : Icons.visibility_off,
-    //validator: lc.validatePassword,
-    onChanged: (value) => null, obscureText: false,
+Consumer<Object?> buildTextFormFieldWidgetPass(BuildContext context) {
+  return Consumer(
+    builder: (BuildContext context, value, _) => TextFormFieldWidget(
+      action: TextInputAction.send,
+      hintText: 'Password',
+      onVisible: () =>
+          context.read<UIVisibilityProvider>().changePasswordVisible(),
+      obscureText: context.watch<UIVisibilityProvider>().isPasswordVisible
+          ? false
+          : true,
+      prefixIconData: Icons.lock,
+      suffixIconData: context.watch<UIVisibilityProvider>().isPasswordVisible
+          ? Icons.visibility
+          : Icons.visibility_off,
+      //validator: lc.validatePassword,
+      onChanged: (value) =>
+          Provider.of<UIVisibilityProvider>(context, listen: false)
+              .changePasswordValue(value),
+    ),
   );
 }

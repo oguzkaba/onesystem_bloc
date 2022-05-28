@@ -2,22 +2,27 @@ import 'package:flutter/material.dart';
 
 class ColorsConstants {
   //Color Variables
-  static const Color white = Color(0xffffffff);
-  static const Color black = Color(0xff000000);
-  static const Color focusedBlue = Color(0xff1479ff);
-  static const Color dark_ = Color(0xff37414A); //*Sidebar top
-  static const Color dark_default = Color(0xff424242); //*Sidebar top
-  static const Color medium = Color(0xff4A5864); //*Sidebar main
-  static const Color light = Color(0xff91A0AD); //*Button
-  static const Color extra_light = Color(0xffC7D4E0); //*Sidebar menuItems
-  static const Color full_light =
-      Color(0xffE9EDF5); //*Main background(scaffold...)
-  static const Color sky_blue = Color(0xff6AD1DF); //*Selected color
-  static const Color green = Color(0xff007f5f); //*Check color
-  static const Color light_green = Color(0xffdafbe5); //*Select color
-  static const Color pink = Color(0xffC93F5B); //*Alert color
-  static const Color light_pink = Color(0xffFFECEF); //*Alert background top
-  static const Color dark_red = Color(0xff8e0000); //*Alert button
-  static const Color trnsp = Color(0x00FFFFFF);
-  static const Color focusedGreen = Color(0xff55B49E);
+  //new color palette
+  static const Color myTrnsp = Colors.transparent;
+  static const Color myWhite = Color(0xFFFFFFFF);
+  static const Color myBlack = Color(0xFF000000);
+  static const Color myLight = Color(0xFFB8B8B8);
+  static const Color myMedium = Color(0xFF7A7A7A);
+  static const Color myDark = Color(0xFF565656);
+  static const Color myBlue = Color(0xFF008FF7);
+  static const Color myLightBlue = Color(0xFFB2E7F5);
+  static const Color myMediumBlue = Color(0xFF1AA1C7);
+  static const Color myDarkBlue = Color(0xFF1C6CA6);
+  static const Color myGreen = Color(0xFF10A831);
+  static const Color myLightGreen = Color(0xFFB6F8C4);
+  static const Color myMediumGreen = Color(0xFF44EE69);
+  static const Color myDarkGreen = Color(0xFF095D1B);
+  static const Color myGolden = Color(0xFFEDA831);
+  static const Color myLightGolden = Color(0xFFFAE7C7);
+  static const Color myMediumGolden = Color(0xFFE19614);
+  static const Color myDarkGolden = Color(0xFFBC7D10);
+  static const Color myRed = Color(0xFFFF0A0A);
+  static const Color myLightRed = Color(0xFFFFB7B7);
+  static const Color myMediumRed = Color(0xFFE00000);
+  static const Color myDarkRed = Color(0xFFB80000);
 }

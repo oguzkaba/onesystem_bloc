@@ -20,7 +20,7 @@ class ShowDialogWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title:
-          Text(title, style: const TextStyle(color: ColorsConstants.dark_red)),
+          Text(title, style: const TextStyle(color: ColorsConstants.myDarkRed)),
       content: SingleChildScrollView(
         child: ListBody(children: <Widget>[
           Text(
@@ -34,14 +34,14 @@ class ShowDialogWidget extends StatelessWidget {
         TextButton(
           child: Text(
             tbtn1,
-            style: const TextStyle(color: ColorsConstants.dark_red),
+            style: const TextStyle(color: ColorsConstants.myDarkRed),
           ),
           onPressed: onPressed,
         ),
         TextButton(
           child: Text(
             tbtn2,
-            style: const TextStyle(color: ColorsConstants.black),
+            style: const TextStyle(color: ColorsConstants.myBlack),
           ),
           onPressed: context.router.pop,
         ),

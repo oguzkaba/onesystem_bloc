@@ -7,18 +7,22 @@ class ImageConstants {
 
   String get darkLogo => toDarkPng('dark1_lowheight'); //TODO: düzenle
 
-  String toDarkPng(String name) => 'assets/images/dark/$name.png';
-  String toLightPng(String name) => 'assets/images/light/$name.png';
-  String toIntroPng(String name) => 'assets/images/intro/$name.png';
+  String toDarkPng(String name) => 'images/dark/$name.png';
+  String toLightPng(String name) => 'images/light/$name.png';
+  String toIntroPng(String name) => 'images/intro/$name.png';
+
+  String toDarkSvg(String name) => 'svg/dark/$name.svg';
+  String toLightSvg(String name) => 'svg/light/$name.svg';
+  String toIntroSvg(String name) => 'svg/intro/$name.svg';
 
   static const List<String> imagesIntro = [
-    'assets/images/intro/sign_in.jpg',
-    'assets/images/intro/responsive.jpg',
-    'assets/images/intro/analyst.jpg',
-    'assets/images/intro/api_sec.jpg',
-    'assets/images/intro/approved.jpg',
-    'assets/images/intro/cloud_sec.jpg',
-    'assets/images/intro/engineer.jpg',
-    'assets/images/intro/time.jpg',
+    'images/intro/sign_in.jpg',
+    'images/intro/responsive.jpg',
+    'images/intro/analyst.jpg',
+    'images/intro/api_sec.jpg',
+    'images/intro/approved.jpg',
+    'images/intro/cloud_sec.jpg',
+    'images/intro/engineer.jpg',
+    'images/intro/time.jpg',
   ];
 }

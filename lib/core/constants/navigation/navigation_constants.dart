@@ -1,9 +1,9 @@
 class NavigationConstants {
   //TODO düzenle
-  static const TEST_VIEW = '/test';
-  static const DEFAULT = '/';
-  static const SETTINGS_WEB_VIEW = '/settingsWebView';
-  static const ON_BOARD = '/onBoard';
+  static const test = '/test';
+  static const defaults = '/';
+  static const settingsWebView = '/settingsWebView';
+  static const onBoard = '/onBoard';
 
-  static const BUY_VIEW = '/buyView';
+  static const buyView = '/buyView';
 }

@@ -13,4 +13,7 @@ class LanguageManager {
   final trLocale = const Locale('tr', 'TR');
 
   List<Locale> get supportedLocales => [enLocale, trLocale];
+
+  //For DropDown List Items
+  static List<String> get supportedLocalesList => ["Türkçe", "English"];
 }
